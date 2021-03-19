@@ -1,16 +1,16 @@
 import React from 'react';
-import '../styles/Navbar.css';
-import advotics_logo from "../assets/advotics-logo.jpg";
-import profile from "../assets/profile.svg";
-import logout from "../assets/logout.png";
+import './Navbar.css';
+import advoticsLogo from "../assets/advotics-logo.jpg";
+import profile from "../assets/icon-profile.svg";
+import logout from "../assets/icon-logout.png";
 
 export default function Navbar() {
     return (
         <div className="nav">
             <div className="nav-container left">
-                <img className="nav-logo" src={advotics_logo} alt="logo"/>
+                <img className="nav-logo" src={advoticsLogo} alt="logo"/>
                 <a style={{fontSize:"10px"}}>powered by</a>
-                <img className="nav-logo small" src={advotics_logo} alt="logo" />
+                <img className="nav-logo small" src={advoticsLogo} alt="logo" />
             </div>
             <div className="nav-container right">
                 <div className="nav-user">

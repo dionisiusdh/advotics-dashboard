@@ -1,0 +1,86 @@
+.db {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0 3% 0 7%;
+}
+
+.db-header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.db-title {
+    width: 50%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.db-period {
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.db-title > h1 {
+    color: #707070C4;
+    font-weight: bolder;
+}
+
+.db-period {
+    width: 100px;
+}
+
+/* ----- CONTENT ----- */
+.db-content {
+    width: 85%;
+    margin: 10px 0;
+}
+
+.content-header {
+    width: 97.5%;
+    height: 48px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    background-color: #37B04C;
+    border-radius: 2px;
+}
+
+.content-header-title {
+    display: flex;
+    justify-content: flex-start;
+    color: #FFFFFF;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.content-header-help {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.icon-help {
+    width: 20px;
+    height: 20px;
+}
+
+.icon-arrow {
+    width: 15px;
+    height: 15px;
+    margin-left: 8px;
+}
+
+.sales {
+    width: 100%;
+    margin: 35px 0;
+    display: flex;
+    justify-content: flex-start;
+}
