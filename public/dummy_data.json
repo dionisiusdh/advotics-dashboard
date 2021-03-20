@@ -1,0 +1,23 @@
+[
+    {
+        "nama": "Snack Besar",
+        "harga": "10000",
+        "jumlah": "143"
+    },{
+        "nama": "Cokelat",
+        "harga": "6000",
+        "jumlah": "121"
+    },{
+        "nama": "Susu Rasa Cokelat",
+        "harga": "8500",
+        "jumlah": "108"
+    },{
+        "nama": "Permen Karet",
+        "harga": "3000",
+        "jumlah": "99"
+    },{
+        "nama": "Susu Rasa Stroberi",
+        "harga": "8500",
+        "jumlah": "75"
+    }
+]

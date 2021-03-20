@@ -1,14 +1,14 @@
 import React from 'react';
 
-import Period from '../components/Period';
-import Sales from "../components/Sales";
+import Period from '../component/Period';
+import Sales from "../component/Sales";
+import ProductList from '../component/ProductList';
+import Chart from '../component/Chart';
 
 import help from "../assets/icon-help.png";
 import arrow from "../assets/icon-arrow.png";
 
 import "./Dashboard.css";
-import ItemList from '../components/ItemList';
-import Chart from '../components/Chart';
 
 export default function Dashboard() {
     return (
@@ -39,11 +39,11 @@ export default function Dashboard() {
                     <div className="chart">
                         <Chart />
                     </div>
-                    <div className="itemlist best-selling">
-                        <ItemList title="BEST SELLING SKU" />
+                    <div className="productlist best-selling">
+                        <ProductList title="BEST SELLING SKU" />
                     </div>
-                    <div className="itemlist top-competitor">
-                        <ItemList title="TOP COMPETITOR SKU"/>
+                    <div className="productlist top-competitor">
+                        <ProductList title="TOP COMPETITOR SKU"/>
                     </div>
                 </div>
             </div>

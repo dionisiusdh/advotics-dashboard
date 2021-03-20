@@ -116,10 +116,10 @@ export default function Chart() {
                 />
             </div>
             <div className="chart-legend">
-                <a className="legend-item"><div style={{width:'18px',height:'8px', borderRadius:'8px', backgroundColor:'#37B04C'}}/>Nett</a>
-                <a className="legend-item"><div style={{width:'18px',height:'8px', borderRadius:'8px', backgroundColor:'#289E45'}}/>Gross</a>
-                <a className="legend-item"><div style={{width:'18px',height:'8px', borderRadius:'8px', backgroundColor:'#7AE28C'}}/>Average Purchase Value</a>
-                <a className="legend-item"><div style={{width:'18px',height:'8px', borderRadius:'8px', backgroundColor:'#707070'}}/>Unit per Transaction</a>
+                <a className="legend-item small"><div className="legend-point" style={{backgroundColor:'#37B04C'}}/>Nett</a>
+                <a className="legend-item small"><div className="legend-point" style={{backgroundColor:'#289E45'}}/>Gross</a>
+                <a className="legend-item"><div className="legend-point" style={{backgroundColor:'#7AE28C'}}/>Average Purchase Value</a>
+                <a className="legend-item"><div className="legend-point" style={{backgroundColor:'#707070'}}/>Unit per Transaction</a>
             </div>
         </div>
     )
