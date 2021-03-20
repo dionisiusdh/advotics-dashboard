@@ -1,0 +1,42 @@
+.side {
+    position: sticky;
+    width: 72px;
+    height: auto;
+    padding: 20px 0;
+    top: 64px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.side-menu {
+    width: 100%;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 48px;
+}
+
+.side-icon {
+    width: 100%;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #D2D2D2;
+}
+
+.side-img {
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+}
+
+.side-img2 {
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    cursor: pointer;
+}

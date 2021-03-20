@@ -2,7 +2,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    padding: 0 3% 0 7%;
+    padding-left: 3%;
 }
 
 .db-header {
@@ -35,12 +35,12 @@
 
 /* ----- CONTENT ----- */
 .db-content {
-    width: 85%;
+    width: 93%;
     margin: 10px 0;
 }
 
 .content-header {
-    width: 97.5%;
+    width: 100%;
     height: 48px;
     display: flex;
     flex-direction: row;
