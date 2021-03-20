@@ -1,0 +1,75 @@
+.chart-container {
+    width: 100%;
+    padding: 15px 20px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #D1D1D1;
+    border-width: thin;
+    border-radius: 5px;
+}
+
+.chart-header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.chart-title {
+    width: 50%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+/* ----- MENU ----- */
+.chart-menu {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.chart-dropdown {
+    width: 30%;
+    padding: 7px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border: 1px solid #D1D1D1;
+    cursor: pointer;
+}
+
+.icon-arrow {
+    width: 10px;
+    height: 10px;
+}
+
+.icon-more {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+/* ----- CHART ----- */
+.chart-bar {
+    width: 100%;
+    margin-top: 30px;
+}
+
+.chart-legend {
+    display: flex;
+    flex-direction: row;
+    padding: 0 20px;
+}
+
+.legend-item {
+    width: inherit;
+    display: flex;
+    align-items: center;
+    color: #4D4F5C;
+    font-size: 12px;
+    margin-left: 55px;
+}
+
+.legend-item div {
+    margin-right: 5px;
+}

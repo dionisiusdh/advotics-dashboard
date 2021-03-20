@@ -1,9 +1,11 @@
 import React from 'react'
 
-export default function ItemList() {
+import "./ItemList.css"
+
+export default function ItemList(props) {
     return (
-        <div>
-            
+        <div className="il-container">
+            <a style={{color:'#4D4F5C', fontSize:'20px'}}>{props.title}</a>
         </div>
     )
 }

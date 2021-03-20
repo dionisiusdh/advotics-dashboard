@@ -39,10 +39,10 @@ export default function Dashboard() {
                     <div className="chart">
                         <Chart />
                     </div>
-                    <div className="best-selling">
+                    <div className="itemlist best-selling">
                         <ItemList title="BEST SELLING SKU" />
                     </div>
-                    <div className="top-competitor">
+                    <div className="itemlist top-competitor">
                         <ItemList title="TOP COMPETITOR SKU"/>
                     </div>
                 </div>
