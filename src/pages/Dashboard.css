@@ -6,10 +6,12 @@
 }
 
 .db-header {
-    width: 100%;
+    width: 95.3%;
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: flex-end;
+    margin: 20px 0;
 }
 
 .db-title {
@@ -20,6 +22,7 @@
 
 .db-period {
     width: 50%;
+    margin-left: auto;
     display: flex;
     justify-content: flex-end;
 }
@@ -30,7 +33,8 @@
 }
 
 .db-period {
-    width: 100px;
+    display: flex;
+    justify-content: flex-end;
 }
 
 /* ----- CONTENT ----- */
