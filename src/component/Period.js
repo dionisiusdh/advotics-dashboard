@@ -18,7 +18,7 @@ export default function Period() {
     var minDate = new Date(Date.now() - 180 * 24 * 60 * 60 * 1000);     // Min range, 6 months ago
 
     // Initiate object for state
-    var initActiveDate = new Array();
+    var initActiveDate = [];
     initActiveDate.push(new Date(Date.now() - 7 * oneDay));
     initActiveDate.push(new Date(Date.now() - oneDay));
 
@@ -66,14 +66,14 @@ export default function Period() {
             initPeriod += initActiveDate[i].getDate() + ' ';
             initPeriod += initActiveDate[i].toLocaleString('default', { month: 'long' }) + ' ';
             initPeriod += initActiveDate[i].getFullYear();
-            if (i == 0) initPeriod += ' - ';
+            if (i === 0) initPeriod += ' - ';
         }
 
         return initPeriod;
     }
 
     const handleFilterChange = filter => {
-        if (filter == 99) {
+        if (filter === 99) {
             // This month
             setCustomActive(false);
             setFilter(filter);
@@ -82,7 +82,7 @@ export default function Period() {
             var todayYear = yesterday.getFullYear();
             setActiveDate([new Date(new Date(todayYear, todayMonth, 1)), yesterday]);
 
-            var initActiveDate = new Array();
+            var initActiveDate = [];
             initActiveDate.push(new Date(new Date(todayYear, todayMonth, 1)));
             initActiveDate.push(yesterday);
             
@@ -93,22 +93,22 @@ export default function Period() {
                 initPeriod += initActiveDate[i].getDate() + ' ';
                 initPeriod += initActiveDate[i].toLocaleString('default', { month: 'long' }) + ' ';
                 initPeriod += initActiveDate[i].getFullYear();
-                if (i == 0) initPeriod += ' - ';
+                if (i === 0) initPeriod += ' - ';
             }
 
             setTempPeriod(initPeriod);
 
             return;
-        } else if (filter == 100) {
+        } else if (filter === 100) {
             // Custom
             setCustomActive(true);
             
             var dateDiff = ((endCustomCalendar.getDate() - startCustomCalendar.getDate())*100000/(3600*24)) + (30 * (endCustomCalendar.getMonth() - startCustomCalendar.getMonth()));
-            console.log(dateDiff)
-            if (startCustomCalendar.getDay() == 1 && startCustomCalendar.getMonth() == endCustomCalendar.getMonth() && endCustomCalendar.getDate() == yesterday.getDate()) {
+            
+            if (startCustomCalendar.getDay() === 1 && startCustomCalendar.getMonth() === endCustomCalendar.getMonth() && endCustomCalendar.getDate() === yesterday.getDate()) {
                 // This month
                 setFilter(99);
-            } else if (startCustomCalendar.getDay() == yesterday.getDay() && startCustomCalendar.getMonth() == yesterday.getMonth()) {
+            } else if (startCustomCalendar.getDay() === yesterday.getDay() && startCustomCalendar.getMonth() === yesterday.getMonth()) {
                 // Yesterday
                 setFilter(1);
             } else if (dateDiff < 7.5  && dateDiff > 6.5) {
@@ -131,11 +131,11 @@ export default function Period() {
             // Change temp period
             var initPeriod = ' ';
         
-            for (var i=0; i<2; i++) {
+            for (i=0; i<2; i++) {
                 initPeriod += activeDateList[i].getDate() + ' ';
                 initPeriod += activeDateList[i].toLocaleString('default', { month: 'long' }) + ' ';
                 initPeriod += activeDateList[i].getFullYear();
-                if (i == 0) initPeriod += ' - ';
+                if (i === 0) initPeriod += ' - ';
             }
 
             setTempPeriod(initPeriod);
@@ -162,8 +162,8 @@ export default function Period() {
                 initPeriod += activeDateList[i].getDate() + ' ';
                 initPeriod += activeDateList[i].toLocaleString('default', { month: 'long' }) + ' ';
                 initPeriod += activeDateList[i].getFullYear();
-                if (filter == 1) break;
-                if (i == 0) initPeriod += ' - ';
+                if (filter === 1) break;
+                if (i === 0) initPeriod += ' - ';
             }
 
             setTempPeriod(initPeriod);
@@ -183,7 +183,7 @@ export default function Period() {
                 if (d1.getTime() === d2.getTime()) {
                     break;
                 }
-                if (i == 0) {
+                if (i === 0) {
                     newPeriod += ' - ';
                 }
             }
@@ -201,7 +201,7 @@ export default function Period() {
                 if (d1.getTime() === d2.getTime()) {
                     break;
                 }
-                if (i == 0) {
+                if (i === 0) {
                     newPeriod += ' - ';
                 }
             }
@@ -229,19 +229,19 @@ export default function Period() {
                 <div className="period-dropdown">
                     <div className='prd-container'>
                         <div className='prd-selector'>
-                            <div className={filter == 1 ? `prd-selector-items active` : `prd-selector-items`} onClick={() => handleFilterChange(1)}>
+                            <div className={filter === 1 ? `prd-selector-items active` : `prd-selector-items`} onClick={() => handleFilterChange(1)}>
                                 <a>Yesterday</a>
                             </div>
-                            <div className={filter == 7 ? `prd-selector-items active` : `prd-selector-items`} onClick={() => handleFilterChange(7)}>
+                            <div className={filter === 7 ? `prd-selector-items active` : `prd-selector-items`} onClick={() => handleFilterChange(7)}>
                                 <a>Last 7 days</a>
                             </div>
-                            <div className={filter == 30 ? `prd-selector-items active` : `prd-selector-items`} onClick={() => handleFilterChange(30)}>
+                            <div className={filter === 30 ? `prd-selector-items active` : `prd-selector-items`} onClick={() => handleFilterChange(30)}>
                                 <a>Last 30 days</a>
                             </div>
-                            <div className={filter == 99 ? `prd-selector-items active` : `prd-selector-items`} onClick={() => handleFilterChange(99)}>
+                            <div className={filter === 99 ? `prd-selector-items active` : `prd-selector-items`} onClick={() => handleFilterChange(99)}>
                                 <a>This month</a>
                             </div>
-                            <div className={filter == 100 ? `prd-selector-items active` : `prd-selector-items`} onClick={() => handleFilterChange(100)}>
+                            <div className={filter === 100 ? `prd-selector-items active` : `prd-selector-items`} onClick={() => handleFilterChange(100)}>
                                 <a>Custom</a>
                             </div>
                             <div className='prd-selector-button' onClick={handleApply}>

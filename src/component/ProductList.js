@@ -8,7 +8,7 @@ import "./ProductList.css"
 export default function ProductList(props) {
     const [data,setData] = useState([]);
 
-    const getData=()=>{
+    const getData= () =>{
         // Fetch data dummy yang ada di ./public
         fetch('dummy_data.json',{
             headers : { 
@@ -40,7 +40,7 @@ export default function ProductList(props) {
             </div>
             {
                 data.map((item, topFlag) => {
-                    if (topFlag == 0) {
+                    if (topFlag === 0) {
                         return <Product nama={item.nama} harga={item.harga} jumlah={item.jumlah} top={true}/>
                         topFlag += 1;
                     } else {
