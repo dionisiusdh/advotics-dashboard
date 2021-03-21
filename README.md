@@ -1,7 +1,7 @@
 # Advotics Dashboard
 > Dashboard user interface page developed using React.js
 
-![](./public/web-capture.png)
+![](./public/web-capture.gif)
 
 By : Dionisius Darryl Hermansyah
 
