@@ -1,18 +1,25 @@
 # Advotics Dashboard
 > Dashboard user interface page developed using React.js
 
+![](./public/web-capture.png)
+
 By : Dionisius Darryl Hermansyah
 
 ## General Info
 A Dashboard is a user interface that organizes and presents complex data with easy to digest visualization. The requirement of this task is to develop a dashboard page based on a mockup including a filter period feature and all the market insight dashboard visualization. Backend server or database are not required.
 
+## Live Demo
+[Here](https://competent-mcnulty-d764fb.netlify.app/)
+
 ## Features
 * Market insight visualization
+* Filter period
 * Interactive components
 
 ## Tech Stack
 * React.js
 * Chart.js (Charting tools)
+* React-Calendar.js
 
 ## How to Run
 1. Make sure you have ```npm``` installed in your local computer
