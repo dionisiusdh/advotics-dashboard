@@ -102,25 +102,29 @@ export default function Period() {
         } else if (filter === 100) {
             // Custom
             setCustomActive(true);
+            setActiveDate(initActiveDate);
             
             var dateDiff = ((endCustomCalendar.getDate() - startCustomCalendar.getDate())*100000/(3600*24)) + (30 * (endCustomCalendar.getMonth() - startCustomCalendar.getMonth()));
-            
+            var yesterdayCondition = startCustomCalendar.getDate() === yesterday.getDate() && startCustomCalendar.getMonth() === yesterday.getMonth();
+
             if (startCustomCalendar.getDay() === 1 && startCustomCalendar.getMonth() === endCustomCalendar.getMonth() && endCustomCalendar.getDate() === yesterday.getDate()) {
                 // This month
                 setFilter(99);
-            } else if (startCustomCalendar.getDay() === yesterday.getDay() && startCustomCalendar.getMonth() === yesterday.getMonth()) {
+            } else if (yesterdayCondition) {
                 // Yesterday
                 setFilter(1);
-            } else if (dateDiff < 7.5  && dateDiff > 6.5) {
+            } else if (dateDiff < 7.5  && dateDiff > 6.5 && endCustomCalendar.getDate() === yesterday.getDate() && endCustomCalendar.getMonth() === yesterday.getMonth()) {
                 // Last 7 days
                 setFilter(7);
-            } else if (dateDiff < 31.5 && dateDiff > 29.5) {
+            } else if (dateDiff < 31.5 && dateDiff > 29.5 && endCustomCalendar.getDate() === yesterday.getDate() && endCustomCalendar.getMonth() === yesterday.getMonth()) {
                 // Last 30 days
                 setFilter(30);
             } else {
                 // Custom
                 setFilter(filter);
             }
+
+            setCustomActive(true);
 
             var activeDateList = new Array();
             activeDateList.push(startCustomCalendar);
@@ -146,6 +150,7 @@ export default function Period() {
             setFilter(filter);
             setActiveDate(new Array());
             setCustomActive(false);
+            setActiveDate(initActiveDate);
             
             // Mark calendar based on filter
             var activeDateList = new Array();
@@ -250,7 +255,7 @@ export default function Period() {
                         </div>
                         <div className='prd-calendar'>
                             <a className="notes">Start date</a>
-                            <div className={customActive ? 'hidden' : ''}>
+                            <div className={customActive ? 'hidden' : ''} onClick={()=>setCustomActive(true)}>
                                 <Calendar 
                                     onClickDay={() => handleFilterChange(100)}
                                     value={activeDate}
@@ -281,7 +286,7 @@ export default function Period() {
                         </div>
                         <div className='prd-calendar'>
                             <a className="notes">End date</a>
-                            <div className={customActive ? 'hidden' : ''}>
+                            <div className={customActive ? 'hidden' : ''} onClick={()=>setCustomActive(true)}>
                                 <Calendar 
                                     onClickDay={() => handleFilterChange(100)}
                                     value={activeDate}
