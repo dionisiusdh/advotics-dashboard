@@ -102,7 +102,25 @@ export default function Period() {
         } else if (filter == 100) {
             // Custom
             setCustomActive(true);
-            setFilter(filter);
+            
+            var dateDiff = ((endCustomCalendar.getDate() - startCustomCalendar.getDate())*100000/(3600*24)) + (30 * (endCustomCalendar.getMonth() - startCustomCalendar.getMonth()));
+            console.log(dateDiff)
+            if (startCustomCalendar.getDay() == 1 && startCustomCalendar.getMonth() == endCustomCalendar.getMonth() && endCustomCalendar.getDate() == yesterday.getDate()) {
+                // This month
+                setFilter(99);
+            } else if (startCustomCalendar.getDay() == yesterday.getDay() && startCustomCalendar.getMonth() == yesterday.getMonth()) {
+                // Yesterday
+                setFilter(1);
+            } else if (dateDiff < 7.5  && dateDiff > 6.5) {
+                // Last 7 days
+                setFilter(7);
+            } else if (dateDiff < 31.5 && dateDiff > 29.5) {
+                // Last 30 days
+                setFilter(30);
+            } else {
+                // Custom
+                setFilter(filter);
+            }
 
             var activeDateList = new Array();
             activeDateList.push(startCustomCalendar);
