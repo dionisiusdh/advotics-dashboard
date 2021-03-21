@@ -102,12 +102,12 @@
     background-color: #e6e6e6;
   }
   .react-calendar__tile--now {
-    background: #ffffc1;
+    /* background: #ffffc1;
     background-image: url("../assets/calendar-circ-2.png");
     background-size: 80%;
     background-position-x: center;
     background-position-y: center;
-    border-radius: 100px;
+    border-radius: 100px; */
   }
   .react-calendar__tile--now:enabled:hover,
   .react-calendar__tile--now:enabled:focus {

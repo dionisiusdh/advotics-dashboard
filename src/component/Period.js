@@ -11,37 +11,34 @@ import close from '../assets/icon-close.jpg';
 
 export default function Period() {
     
-    const oneDay = 24 * 60 * 60 * 1000;
+    // Date constant
+    var oneDay = 24 * 60 * 60 * 1000;
+    var today = new Date(Date.now());
+    var yesterday = new Date(new Date() - oneDay);
+    var minDate = new Date(Date.now() - 180 * 24 * 60 * 60 * 1000);     // Min range, 6 months ago
 
+    // Initiate object for state
     var initActiveDate = new Array();
     initActiveDate.push(new Date(Date.now() - 7 * oneDay));
     initActiveDate.push(new Date(Date.now() - oneDay));
 
-    var initPeriod = ' ';
+    var initPeriod = getInitPeriod(initActiveDate);
 
-    for (var i=0; i<2; i++) {
-        initPeriod += initActiveDate[i].getDate() + ' ';
-        initPeriod += initActiveDate[i].toLocaleString('default', { month: 'long' }) + ' ';
-        initPeriod += initActiveDate[i].getFullYear();
-        if (i == 0) initPeriod += ' - ';
-    }
+    // For outside box click handling
+    const wrapperRef = useRef(null);
+    useOutsideClose(wrapperRef);
 
-    const [active, setActive] = useState(false);
-    const [realPeriod, setRealPeriod] = useState(initPeriod);
-    const [tempPeriod, setTempPeriod] = useState(initPeriod);
+    const [active, setActive] = useState(false);                                 // Dropdown active status
+    const [realPeriod, setRealPeriod] = useState(initPeriod);                    // Temporary period
+    const [tempPeriod, setTempPeriod] = useState(initPeriod);                    // Real shown period
 
-    const [startCalendar, setStartCalendar] = useState(initActiveDate[0]);
-    const [endCalendar, setEndCalendar] = useState(initActiveDate[1]);
     const [filter, setFilter] = useState(7);                                     // Default filter period
     const [activeDate, setActiveDate] = useState(initActiveDate);                // Active date range
 
-    const [startCustomCalendar, setStartCustomCalendar] = useState(new Date());
-    const [endCustomCalendar, setEndCustomCalendar] = useState(new Date());
-    const [customActive, setCustomActive] = useState(false);                           
+    const [startCustomCalendar, setStartCustomCalendar] = useState(yesterday);   // Start date on custom calendar
+    const [endCustomCalendar, setEndCustomCalendar] = useState(yesterday);       // End date on custom calendar
+    const [customActive, setCustomActive] = useState(false);                     // Custom active status
     const [customDateActive, setCustomDateActive] = useState(initActiveDate);    // Active custom date range 
-
-    const wrapperRef = useRef(null);
-    useOutsideClose(wrapperRef);
 
     function useOutsideClose(ref) {
         // Close component if a click happens outside it
@@ -61,43 +58,33 @@ export default function Period() {
         }, [ref]);
     }
 
-    const handleStartChange = date => {
-        setStartCalendar(date);
-    }
+    function getInitPeriod(initActiveDate) {
+        // Get initial period which is 7 days by default
+        var initPeriod = ' ';
 
-    const handleEndChange = date => {
-        setEndCalendar(date);
+        for (var i=0; i<2; i++) {
+            initPeriod += initActiveDate[i].getDate() + ' ';
+            initPeriod += initActiveDate[i].toLocaleString('default', { month: 'long' }) + ' ';
+            initPeriod += initActiveDate[i].getFullYear();
+            if (i == 0) initPeriod += ' - ';
+        }
+
+        return initPeriod;
     }
 
     const handleFilterChange = filter => {
-        if (filter == 0) {
-            // Today
-            setFilter(filter);
-            setStartCalendar(new Date());
-            setEndCalendar(new Date());
-            setActiveDate([new Date(), new Date()]);
-            
-            // Change temp period
-            var newTempPeriod = ' ';
-
-            newTempPeriod += new Date().getDate() + ' ';
-            newTempPeriod += new Date().toLocaleString('default', { month: 'long' }) + ' ';
-            newTempPeriod += new Date().getFullYear();
-
-            setTempPeriod(newTempPeriod);
-
-            return;
-        } else if (filter == 99) {
+        if (filter == 99) {
             // This month
             setCustomActive(false);
             setFilter(filter);
-            var todayMonth = new Date().getMonth();
-            var todayYear = new Date().getFullYear();
-            setActiveDate([new Date(todayYear, todayMonth, 1), new Date()]);
+
+            var todayMonth = yesterday.getMonth();
+            var todayYear = yesterday.getFullYear();
+            setActiveDate([new Date(new Date(todayYear, todayMonth, 1)), yesterday]);
 
             var initActiveDate = new Array();
-            initActiveDate.push(new Date(todayYear, todayMonth, 1));
-            initActiveDate.push(new Date());
+            initActiveDate.push(new Date(new Date(todayYear, todayMonth, 1)));
+            initActiveDate.push(yesterday);
             
             // Change temp period
             var initPeriod = ' ';
@@ -146,8 +133,8 @@ export default function Period() {
             var activeDateList = new Array();
             
             // Change active date list state
-            activeDateList.push(new Date(Date.now() - filter * oneDay));
-            activeDateList.push(new Date(Date.now() - oneDay));
+            activeDateList.push(new Date(Date.now() - (filter) * oneDay));
+            activeDateList.push(yesterday);
             setActiveDate(activeDateList);
 
             // Change temp period
@@ -224,9 +211,6 @@ export default function Period() {
                 <div className="period-dropdown">
                     <div className='prd-container'>
                         <div className='prd-selector'>
-                            <div className={filter == 0 ? `prd-selector-items active` : `prd-selector-items`} onClick={() => handleFilterChange(0)}>
-                                <a>Today</a>
-                            </div>
                             <div className={filter == 1 ? `prd-selector-items active` : `prd-selector-items`} onClick={() => handleFilterChange(1)}>
                                 <a>Yesterday</a>
                             </div>
@@ -250,11 +234,10 @@ export default function Period() {
                             <a className="notes">Start date</a>
                             <div className={customActive ? 'hidden' : ''}>
                                 <Calendar 
-                                    onChange={handleStartChange} 
                                     onClickDay={() => handleFilterChange(100)}
                                     value={activeDate}
                                     minDate={new Date(Date.now() - 180 * 24 * 60 * 60 * 1000)}
-                                    maxDate={new Date()}
+                                    maxDate={new Date(Date.now() - 1 * 24 * 60 * 60 * 1000)}
                                     selectRange={true}
                                 />
                             </div>
@@ -264,31 +247,28 @@ export default function Period() {
                                     onClickDay={() => handleFilterChange(100)}
                                     value={customDateActive}
                                     minDate={new Date(Date.now() - 180 * 24 * 60 * 60 * 1000)}
-                                    maxDate={new Date()}
+                                    maxDate={new Date(Date.now() - 1 * 24 * 60 * 60 * 1000)}
                                     selectRange={false}
                                 />
-                                <a className="notes">* On custom mode, please double click on the date to select the date</a>
+                                <a className="notes-2">* On custom mode, please double click on the date to select the date</a>
                             </div>
-                            <div className="legend">
-                                <div className="legend-item">
-                                    <div className="circle yellow"></div>
-                                    <a className="notes">Today's date</a>
-                                </div>
-                                <div className="legend-item">
-                                    <div className="circle green"></div>
-                                    <a className="notes">Selected date</a>
-                                </div>
-                            </div>
+                            <a className="notes-2">
+                                Current Date: 
+                                { ' ' + today.getDate() + ' ' + today.toLocaleString('default', { month: 'long' }) + ' ' + today.getFullYear()}
+                            </a>
+                            <a className="notes-2">Available Date Range: 
+                                { ' ' + minDate.getDate() + ' ' + minDate.toLocaleString('default', { month: 'long' }) + ' ' + minDate.getFullYear() + ' - ' + 
+                                  yesterday.getDate() + ' ' + yesterday.toLocaleString('default', { month: 'long' }) + ' ' + yesterday.getFullYear() }
+                            </a>
                         </div>
                         <div className='prd-calendar'>
                             <a className="notes">End date</a>
                             <div className={customActive ? 'hidden' : ''}>
                                 <Calendar 
-                                    onChange={handleEndChange}
                                     onClickDay={() => handleFilterChange(100)}
                                     value={activeDate}
                                     minDate={new Date(Date.now() - 180 * 24 * 60 * 60 * 1000)}
-                                    maxDate={new Date()}
+                                    maxDate={new Date(Date.now() - 1 * 24 * 60 * 60 * 1000)}
                                     selectRange={true}
                                 />
                             </div>
@@ -298,7 +278,7 @@ export default function Period() {
                                     onClickDay={() => handleFilterChange(100)}
                                     value={customDateActive}
                                     minDate={new Date(Date.now() - 180 * 24 * 60 * 60 * 1000)}
-                                    maxDate={new Date()}
+                                    maxDate={new Date(Date.now() - 1 * 24 * 60 * 60 * 1000)}
                                     selectRange={false}
                                 />
                             </div>
