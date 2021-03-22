@@ -28,9 +28,9 @@ export default function Chart() {
                         datasets: [
                         {
                             label: 'Line',
-                            data : [20000, 15000, 12000, 10000, 12000, 14000, 21000],
-                            data1 : [20000, 15000, 12000, 10000, 12000, 14000, 21000],
-                            data2 : [19000, 13000, 11000, 9000, 10000, 11000, 20000],
+                            data : [19000, 13000, 11000, 9000, 10000, 11000, 18000],
+                            data1 : [20000, 15000, 12000, 13000, 12500, 14000, 18000],
+                            data2 : [19000, 13000, 11000, 9000, 10000, 11000, 18000],
                             data3 : [17000, 14000, 8000, 5000, 9000, 5000, 18000],
                             data4 : [10.0, 9.9, 5.7, 6.3, 4.6, 8.9, 12.2],
                             type: 'line',
@@ -43,8 +43,8 @@ export default function Chart() {
                         },
                         {
                             label: 'Penjualan',
-                            data : [20000, 15000, 12000, 10000, 12000, 14000, 21000],
-                            data1 : [20000, 15000, 12000, 10000, 12000, 14000, 21000],
+                            data : [20000, 15000, 12000, 13000, 12500, 14000, 18000],
+                            data1 : [20000, 15000, 12000, 13000, 12500, 14000, 18000],
                             data2 : [19000, 13000, 11000, 9000, 10000, 11000, 20000],
                             data3 : [17000, 14000, 8000, 5000, 9000, 5000, 18000],
                             data4 : [10.0, 9.9, 5.7, 6.3, 4.6, 8.9, 12.2],
@@ -91,11 +91,9 @@ export default function Chart() {
                         tooltips: {
                             mode: 'label',
                             callbacks: {
-                        
                                 title: function(tooltipItem, data) {
-                                    return data.labels[tooltipItem[0].index];
+                                    return 'Date/Month/Year';
                                 },
-                        
                                 beforeLabel: function(tooltipItem, data) {
                                     if (tooltipItem.datasetIndex === 0) {
                                         return (
@@ -111,7 +109,21 @@ export default function Chart() {
                                     return '';
                                 },
                             },
-                        },
+                            xPadding: 30,
+                            yPadding: 8,
+                            backgroundColor: '#FFFFFF',
+                            borderWidth: 0.5,
+                            cornerRadius: 0,
+                            borderColor: '#FFB24A',
+                            titleFontSize: 11,
+                            titleFontColor: '#43425D',
+                            titleMarginBottom: 10,
+                            bodyFontColor: '#000',
+                            bodyFontSize: 11,
+                            bodySpacing: 8,
+                            displayColors: false,
+                            caretSize: 0
+                        }
                     }}
                 />
             </div>
