@@ -105,9 +105,9 @@ export default function Period() {
             setActiveDate(initActiveDate);
             
             var dateDiff = ((endCustomCalendar.getDate() - startCustomCalendar.getDate())*100000/(3600*24)) + (30 * (endCustomCalendar.getMonth() - startCustomCalendar.getMonth()));
-            var yesterdayCondition = startCustomCalendar.getDate() === yesterday.getDate() && startCustomCalendar.getMonth() === yesterday.getMonth();
+            var yesterdayCondition = startCustomCalendar.getDate() === yesterday.getDate() && endCustomCalendar.getDate() === yesterday.getDate() && startCustomCalendar.getMonth() === yesterday.getMonth();
 
-            if (startCustomCalendar.getDay() === 1 && startCustomCalendar.getMonth() === endCustomCalendar.getMonth() && endCustomCalendar.getDate() === yesterday.getDate()) {
+            if (startCustomCalendar.getDate() === 1 && startCustomCalendar.getMonth() === endCustomCalendar.getMonth() && endCustomCalendar.getDate() === yesterday.getDate()) {
                 // This month
                 setFilter(99);
             } else if (yesterdayCondition) {
